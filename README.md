@@ -1,7 +1,7 @@
  # BEST Black Ops 6 AFK Script
  @ Please Dont Use In STANDARD TEAM MODES!
  
- $ Best Game Modes
+   Best Game Modes
    + Free For All
    + 10v10
    + Face Off
