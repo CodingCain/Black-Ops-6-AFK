@@ -1,5 +1,5 @@
 from pynput.mouse import Button, Controller as MouseController
-from pynput.keyboard import Key, Controller as KeyController
+from pynput.keyboard import Key, Controller as KeyController, Listener
 import random
 import time
 from pyfiglet import Figlet
@@ -27,11 +27,23 @@ key_command_list = ["Sprint", "SlideR", "SlideL", "Crouch", "LayDown", "Back", "
 
 mouse_click_list = ["Shoot", "Aim", "Both"]
 
+paused = False
 
-
+def on_press(key):
+    global paused
+    try:
+        if key == Key.f7:
+            paused = True
+            print("Paused")
+        elif key == Key.f8:
+            paused = False
+            print("Resumed")
+    except Exception as e:
+        print(f"Error: {e}")
 
 
 def main():
+    global paused
 
     header()
     time.sleep(3)
@@ -42,6 +54,10 @@ def main():
     time.sleep(3)
 
     while True:
+        if paused:
+            time.sleep(0.1)
+            continue
+
         # select loadout
         mouse.position = (192, 123)
         mouse.press(Button.left)
@@ -51,10 +67,10 @@ def main():
         keyboard.press("e")
         keyboard.release("e")
 
-        # Not Functional : smc = get_mouse_commands(mouse_command_list)
+        # +++Not Functional+++ : smc = get_mouse_commands(mouse_command_list)
         
         skd = get_key_commands(key_command_list)
-        # Not Functional: do_mouse_command(smc)
+        # +++Not Functional+++ : do_mouse_command(smc)
         do_key_command(skd)
         shoot(mouse_click_list)
         print("---------------------------------\n")
@@ -83,7 +99,7 @@ def get_key_commands(key_command_list):
     random_key_movement = random.choice(key_command_list)
     return random_key_movement
 
-# Not Functional: def do_mouse_command(smc):
+# +++Not Functional+++: def do_mouse_command(smc):
     if smc == "180":
         return mouse.move(50, -50)
     elif smc == "360":
@@ -200,4 +216,8 @@ def shoot(mouse_click_list):
 
 
 if __name__ == "__main__":
+    
+    listener = Listener(on_press=on_press)
+    listener.start()
+    
     main()
