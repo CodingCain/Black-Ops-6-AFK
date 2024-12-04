@@ -1,4 +1,4 @@
- #BEST Black Ops 6 AFK Script
+ # BEST Black Ops 6 AFK Script
 - Not Detectable By Anit Cheat
 - Random Movements and Omni Movements
 - Random Shoot times, Dont shoot, Aim without shooting, Aim and Shoot
