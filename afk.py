@@ -32,10 +32,10 @@ paused = False
 def on_press(key):
     global paused
     try:
-        if key == Key.f7:
+        if key == Key.f7: # Change this key for Pause Hotkey
             paused = True
             print("Paused")
-        elif key == Key.f8:
+        elif key == Key.f8: # Change this key for Resume Hotkey
             paused = False
             print("Resumed")
     except Exception as e:
